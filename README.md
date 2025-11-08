@@ -1,12 +1,15 @@
 # getAusweis
 Small Python tooling to batch-extract StudentID Information from PDF-Invoices
 
-When selling School-Pictures with portraitbox.com i need to know which Customer bought a StudenID card in order to print only the cards that are actually ordered. Sadly, Portraitbox does not give me this information in machine readable form. The only way to get to this information is to download all the PDF Invoices in one directory. This download can be requested with one click.
+When selling School-Pictures with [Portraitbox.com](https://portraitbox.com) i need to know which customer bought a StudenID card in order to print only the cards that are actually ordered. Sadly, Portraitbox does not provie this data in machine readable form. The only way to get to this information is to download all the PDF Invoices in one directory. This download can be requested within the admin interface.
 
-This script no looks through all .pdf Invoices in a specified directory and scans them for the keyword "Schülerausweis", indicating that this customer bought a StudentID. It then fetches the Order-Code which was used by the customer to log in to the Shop as well as the order number. The script then creates a .csv file with Order Number and Order-Code. this allows me to join the .csv file with my existing .xlsx files to map the Order-Code to the Name of a student which again can be joined with my print database containing Birthday, Graduation Day, Name and path tho ID-Photo.
+The point of this skript is to look through all ```.pdf``` Invoices in a specified directory and scan them for the keyword _Schülerausweis_, indicating that this customer bought a StudentID. It then fetches the Order-Code which was used by the customer to log in to the Shop as well as the order number. The script then creates a ```.csv``` file with Order Number and Order-Code. 
+The Order-Code allows me to match the StudentID-Order to the Name of a specific student through joining it with my existing data that was used to set up the store at the beginning. This can again be joined with my print database containing birthday, graduation day, name and path tho ID-Photo which can be directly fed to the Card-Printer.
 
-All in all this tool allows me to get from a directory with .pdf files to a directly printable table that contains all neccessary information for the print of the StudentID for everyone that bought one.
+Since the ```.pdf``` files are sorted by Order Number, the ```.csv``` file is also sorted by Ordernumber. By keeping up this order all the way until printing, it also alows for easy packaging since the StudentIDs are in the same order as the orders themselves.
 
-In particular the script also handels orders with multiple codes and multiple StudentID orders for diffrent Students (e.g. orders for siblings). In this case the script creates a seperate entry with the same Invoice number but different Order-Code.
+In summary, this tool allows me to get from a directory with 4 digit amount of ```.pdf``` files to a directly printable table that contains all neccessary information to start one printjob of StudentIDs for everyone that bought one.
 
-Optionally a third column with all Classes for which Photos were ordered can be included in the .csv file for extra convenience and supervision.
+In particular the script also handels orders with multiple codes / multiple StudentID orders for diffrent Students (e.g. orders for siblings). In this case the script creates a seperate entry with the same Invoice number but different Order-Code.
+
+Optionally a third column with all Classes for which Photos were ordered in a specific order can be included in the .csv file for extra convenience and supervision.
