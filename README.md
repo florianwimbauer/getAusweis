@@ -12,4 +12,4 @@ In summary, this tool allows me to get from a directory with 4 digit amount of `
 
 In particular the script also handels orders with multiple codes / multiple StudentID orders for diffrent Students (e.g. orders for siblings). In this case the script creates a seperate entry with the same Invoice number but different Order-Code.
 
-Optionally a third column with all Classes for which Photos were ordered in a specific order can be included in the .csv file for extra convenience and supervision.
+Optionally a third column with all Classes for which Photos were ordered in a specific order can be included in the ```.csv``` file for extra convenience and supervision.
