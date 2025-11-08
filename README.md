@@ -13,3 +13,16 @@ In summary, this tool allows me to get from a directory with 4 digit amount of `
 In particular the script also handels orders with multiple codes / multiple StudentID orders for diffrent Students (e.g. orders for siblings). In this case the script creates a seperate entry with the same Invoice number but different Order-Code.
 
 Optionally a third column with all Classes for which Photos were ordered in a specific order can be included in the ```.csv``` file for extra convenience and supervision.
+
+## Usage
+
+# getAusweis
+- path to directory with Invoices (singular files!)
+
+# joinTable
+- getAusweis
+- download: \["Name", "Kennwort", "Gruppe / Klasse"\]
+- (optional) bibData: \[Name, Gruppe, FotoID, BibNR, Graduation, Birthday\]
+
+If all three joined -> directly printable
+
