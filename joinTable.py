@@ -12,18 +12,22 @@ def join_getAusweis_download(getAusweis, download, output):
     # Creates the merge
     merger = getAusweisReader.merge(downloadReader, left_on="Zugangscode", right_on="Kennwort", how="left")
     merger = merger.drop(columns=["Kennwort"])
-    # Writes it to data
+    # Writes it to file
     outending = output + ".csv"
     merger.to_csv(outending, index=False, encoding="utf-8-sig")
     print("Join von getAusweis und Download abgeschlossen")
 
-# Creates the first
+# Creates the second joint table with Print Data (Birthdate, Graduation, BibID, FotoNr, ...)
 def join_op1_bibData(merger, bibData, output):
     # Read both files
     mergerReader = pd.read_csv(merger)
     bibReader = pd.read_excel(bibData)
     # Create the merge
-    final_merger = mergerReader.merge(bibReader, left_on="Name")
+    final_merger = mergerReader.merge(bibReader, on="Name", how="left")
+    final_merger = final_merger.drop(columns=["Gruppe"])
+    # Writes it to file
+    outending = output + ".csv"
+    final_merger.to_csv(outending, index=False, encoding="utf-8-sig")
 
 # main method
 def main(getAusweis, download, bibData, output):
