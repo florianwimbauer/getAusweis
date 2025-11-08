@@ -14,12 +14,12 @@ In particular the script also handels orders with multiple codes / multiple Stud
 
 Optionally a third column with all Classes for which Photos were ordered in a specific order can be included in the ```.csv``` file for extra convenience and supervision.
 
-## Usage
+# Usage
 
-# getAusweis
+## getAusweis
 - path to directory with Invoices (singular files!)
 
-# joinTable
+## joinTable
 - getAusweis
 - download: \["Name", "Kennwort", "Gruppe / Klasse"\]
 - (optional) bibData: \[Name, Gruppe, FotoID, BibNR, Graduation, Birthday\]
