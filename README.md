@@ -1,5 +1,5 @@
 # getAusweis
-Small Python tooling to batch-extract StudentID Information from PDF-Invoices
+Small Python tooling to batch-extract StudentID Information from PDF-Invoices and bring them into a printable format through merging with other tables
 
 When selling School-Pictures with [Portraitbox.com](https://portraitbox.com) i need to know which customer bought a StudenID card in order to print only the cards that are actually ordered. Sadly, Portraitbox does not provie this data in machine readable form. The only way to get to this information is to download all the PDF Invoices in one directory. This download can be requested within the admin interface.
 
