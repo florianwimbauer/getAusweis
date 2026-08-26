@@ -10,12 +10,16 @@ import sys
 import pymupdf
 import pandas as pd
 import win32com.client
+import subprocess
+import time
 
 print("Hello")
 
 # Paths
 input_path = Path(r"C:\Users\accou\OneDrive\Desktop\Print")
 final_destination = Path(r"C:\Users\accou\OneDrive\Desktop\Print\Finished")
+
+Sumatra_path = Path(r"C:\Users\accou\AppData\Local\SumatraPDF\SumatraPDF.exe")
 
 # Filed Names in the .lbx Template
 template = Path(r"C:\Users\accou\OneDrive\Desktop\Etiketten\Kombietikett.lbx")
@@ -167,6 +171,38 @@ try:
 except Exception as e:
     pass
 
+print()
+print("========================================")
+print("          PDF DOKUMENTENDRUCK")
+print("========================================")
+print()
+
+if not Sumatra_path.exists():
+    print(f"WARNUNG: SumatraPDF.exe konnte nicht unter {Sumatra_path} gefunden werden.")
+    print("PDF-Druck wird übersprungen.")
+else:
+    print_answer = input(f"Alle {len(processed_files)} PDF-Dokumente auf dem Standarddrucker drucken? [J/N]: ")
+
+    if print_answer.lower() in ("j", "ja"):
+        for idx, pdf_file in enumerate(processed_files, start=1):
+            print(f"Drucke PDF {idx}/{len(processed_files)}: {pdf_file.name}")
+            try:
+                subprocess.run([
+                    str(Sumatra_path),
+                    "-print-to-default",
+                    "-silent",
+                    str(pdf_file)
+                ], check=True)
+            except Exception as e:
+                print(f"Fehler beim Drucken von {pdf_file.name}: {e}")
+        
+        # Delay for spooler
+        time.sleep(1)
+    else:
+        print("PDF-Dokumentendruck übersprungen.")
+
+input("Enter Wenn Drucker fertig")
+
 # Move files into finished folder
 final_destination.mkdir(parents=True, exist_ok=True)
 
@@ -178,9 +214,3 @@ for file in processed_files:
         loc.unlink()
 
     shutil.move(str(file), str(loc))
-
-print()
-print("========================================")
-print("              FERTIG")
-print("========================================")
-input("Enter zum Beenden")
